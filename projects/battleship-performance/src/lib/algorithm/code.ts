@@ -4,19 +4,12 @@ import { Boards } from "./interfaces";
 import { concat} from "rxjs";
 import { setUp$, initVal$ } from "./setup";
 import {shots$} from "./shots";
-import { switchMap, repeat, last,scan} from "rxjs/operators";
+import {map, switchMap, repeat, last,scan} from "rxjs/operators";
+import {BattleshipResult} from "../interfaces";
 
-export interface BattleshipResult {
-  games:number;
-  computerAvgTurns:number;
-  playerAvgTurns:number;
-  computerTurns:number;
-  playerTurns:number;
-  computerBetterBy:number;
-}
 
 export const game$= (gridSize:number, shipsNo:number, iterations:number) =>
-initVal$(gridSize, shipsNo).pipe(
+initVal$(gridSize, shipsNo, iterations).pipe(
   switchMap((initial:Boards)=>concat(setUp$(initial), shots$(initial))),
   last(),
   scan<{computerTurns:number, playerTurns:number},BattleshipResult>((acc:BattleshipResult, curr:any)=>{

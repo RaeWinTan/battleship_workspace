@@ -1,6 +1,6 @@
 {
   "name": "battleship-performance",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A command-line utility to estimate battleship bot performance in terms of number of turns to will opponent",
   "author":"Tan Rae-Win",
   "repository":{

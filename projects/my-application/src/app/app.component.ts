@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {BattleshipPerformanceService, BattleshipResult} from "battleship-performance";
+import {BattleshipPerformanceService, BattleshipResult, Battleship_performanceError} from "battleship-performance";
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 @Component({
@@ -48,6 +48,9 @@ export class AppComponent {
           this.lineChartData[0].data.push(c.computerTurns);
           this.lineChartData[1].data.push(c.playerTurns);
           this.lineChartLabels.push(`${c.games}`);
+        },
+        (err:Battleship_performanceError)=>{
+          alert(err.message);
         }
       );
   }

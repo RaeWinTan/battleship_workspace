@@ -4,7 +4,7 @@
 
 An angular 11.0+ service that emits battleship performance of a smart and dumb bot.
 
-#WORKSPACE
+# WORKSPACE
 
 https://github.com/RaeWinTan/battleship_workspace
 
@@ -44,6 +44,8 @@ export class AppModule { }
 
 **Step3:** Use in component
 ```ts
+import {BattleshipPerformanceService, BattleshipResult, Battleship_performanceError} from "battleship-performance";
+
 export class .....{
   ....
   bps:any;
@@ -54,7 +56,10 @@ export class .....{
     this.bps.game(gridSize, shipsNo,iterations).subscribe(
        (c:BattleshipResult)=>{
         //do what ever you want to do with the data
-       }
+      },
+      (err:Battleship_performanceError)=>{
+        //do what you want when encounter error
+      }
      );
   }
 
