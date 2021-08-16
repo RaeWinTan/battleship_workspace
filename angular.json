@@ -156,9 +156,13 @@
               "devServerTarget": "my-application:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     }
   },
-  "defaultProject": "battleship-performance"
+  "defaultProject": "my-application"
 }

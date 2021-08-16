@@ -4,13 +4,17 @@
 
 An angular 11.0+ service that emits battleship performance of a smart and dumb bot.
 
+#WORKSPACE
+
+https://github.com/RaeWinTan/battleship_workspace
+
 # ABOUT
 
 This is a Angular package to estimate the amount turns for the battleship 'smart bot' in  https://github.com/RaeWinTan/RXJSLearn (battleship branch) to finish a battleship game as compared to a less efficient 'dumb bot' that just shoots shots base on luck to win the game (using a random number generator).
 
 ## Demo
 GAME: https://stackblitz.com/github/RaeWinTan/RXJSLearn/tree/battleship
-ANGULAR DEMO of this package:
+Package in action in an Angular Project: https://raewintan.github.io/battleship_workspace/
 
 ## Usage
 
