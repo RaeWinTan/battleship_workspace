@@ -14,8 +14,8 @@ export class AppComponent {
   shipsNo:number;
   iterations:number;
   public lineChartData: ChartDataSets[] = [
-     { data: [], label: 'Computer Turns' },
-     { data: [],label:'Player Turns'}
+     { data: [], label: 'Smart bot Turns' },
+     { data: [],label:'Dumb bot Turns'}
    ];
   public lineChartLabels: Label[] = [
 
