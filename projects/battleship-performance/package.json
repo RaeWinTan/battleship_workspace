@@ -1,16 +1,16 @@
 {
   "name": "battleship-performance",
-  "version": "2.0.2",
+  "version": "2.0.4",
   "description": "An angular service to compare a smart battleship bot to a dumb battleship bot",
   "author":"Tan Rae-Win",
   "repository":{
     "type":"git",
-    "url":"https://github.com/RaeWinTan/battleship_perfomance.git"
+    "url":"https://github.com/RaeWinTan/battleship_workspace.git"
   },
   "bugs":{
-    "url":"https://github.com/RaeWinTan/battleship_perfomance/issues"
+    "url":"https://github.com/RaeWinTan/battleship_workspace/issues"
   },
-  "homepage":"https://github.com/RaeWinTan/battleship_perfomance",
+  "homepage":"",
   "keywords":[
     "angular",
     "battleship",

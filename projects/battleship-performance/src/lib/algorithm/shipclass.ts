@@ -14,7 +14,7 @@ interface Ship {
 
 export interface ShipMan {
   ships:Ship[];
-  allPos:number[];
+  allPos:Map<number, number>;
 }
 
 
@@ -37,7 +37,9 @@ export class ShipClass implements ShipClassInterface {
     this._gridSize = gridSize;
     this._shipsNo = shipsNo;
   }
-
+  protected shipBefore(x:number):boolean{
+    return this._shipman.allPos.has(x);
+  }
   get gridSize():number{
     return this._gridSize;
   }
@@ -49,14 +51,14 @@ export class ShipClass implements ShipClassInterface {
     if(this._shipman.ships.length === 0){
       let pos:number[] = [];
       pos.push(curr);
-      this._shipman.allPos.push(curr);
+      this._shipman.allPos.set(curr, curr);
       this._shipman.ships.push({pos:pos, length:this._shipsNo, posibleDirection:Direction.all});
     } else {
       if(this._shipman.ships[this._shipman.ships.length-1].pos.length < this._shipsNo - this._shipman.ships.length+1){
         let len:number = this._shipsNo - this._shipman.ships.length + 1;
         let d:Direction = this.checkValidity(curr, len, this._shipman.ships[this._shipman.ships.length-1]);
         if(d!== Direction.no){
-          this._shipman.allPos.push(curr);
+          this._shipman.allPos.set(curr,curr);
           this._shipman.ships[this._shipman.ships.length-1].length = len;
           this._shipman.ships[this._shipman.ships.length-1].pos.push(curr);
           this._shipman.ships[this._shipman.ships.length-1].posibleDirection = d;
@@ -66,7 +68,7 @@ export class ShipClass implements ShipClassInterface {
         let len = this._shipsNo-this._shipman.ships.length;
         let d:Direction = this.checkValidity(curr, len);
         if (d !== Direction.no) {
-          this._shipman.allPos.push(curr);
+          this._shipman.allPos.set(curr, curr);
           this._shipman.ships.push({pos:[curr], length:len, posibleDirection:d});
         }
 
@@ -75,7 +77,7 @@ export class ShipClass implements ShipClassInterface {
     return this;
   }
   protected checkValidity(curr:number, len:number, ship?:Ship):Direction {
-    if (this._shipman.allPos.includes(curr)) return Direction.no;
+    if (this.shipBefore(curr)) return Direction.no;
     if (ship === undefined){
       if(this.verticalCan(curr, len) && this.horizontalCan(curr, len)) return Direction.all;
       else if (this.verticalCan(curr, len)) return Direction.vertical;
@@ -98,7 +100,7 @@ export class ShipClass implements ShipClassInterface {
     let b:number = curr;
     t= t-this._gridSize;
     while(t>0){
-      if(this.shipman.allPos.includes(t)) break;
+      if(this.shipBefore(t)) break;
       top++;
       if (top >= limit) return true;
       t = t-this._gridSize;
@@ -106,7 +108,7 @@ export class ShipClass implements ShipClassInterface {
     let bottom:number = 0;
     b = b+this._gridSize
     while (b<=this._gridSize*this._gridSize){
-      if(this._shipman.allPos.includes(b)) break;
+      if(this.shipBefore(b)) break;
       bottom++;
       if(bottom>=limit)return true;
       b=b+this._gridSize;
@@ -125,7 +127,7 @@ export class ShipClass implements ShipClassInterface {
     let l:number = curr;
     r= r+1;
     while(this.inHorizontalLine(curr, r)){
-      if(this._shipman.allPos.includes(r)) break;
+      if(this.shipBefore(r)) break;
       right++;
       if (right >= limit) return true;
       r = r+1;
@@ -133,7 +135,7 @@ export class ShipClass implements ShipClassInterface {
     let left:number = 0;
     l = l-1;
     while (this.inHorizontalLine(curr, l)){
-      if(this.shipman.allPos.includes(l)) break;
+      if(this.shipBefore(l)) break;
       left++;
       if(left>=limit)return true;
       l=l-1;
