@@ -28,10 +28,10 @@ This is a Angular package to estimate the amount turns for the battleship 'smart
 * It is not considered a turn if the bot(smart/dumb) shoots a location it shot before
 
 # ACCURACY
-* For the most accurate result, all parameters to a high value
+* For the most accurate result, set all parameters to a high value (>10, warning: if it is to high the program will take very long to yield results)
 * Set grid size and ships to the same value
   * The greater the difference between grid size and ships the more inaccurate the result because the smart bot's probability to hit a ship in a less crowded grid is closer to the dumb bot.
-* I ran the program in my computer with grid size, ships, games = 30. The smart bot uses about 16.5% less turns as compared to the dumb bot.
+* I ran the program in my computer with grid size, ships, games = 30. The smart bot uses about 16.5% less turns than dumb bot.
 
 ## Demo
 GAME: https://stackblitz.com/github/RaeWinTan/RXJSLearn/tree/battleship Read its readme.md to deploy(it only takes 3 steps)
