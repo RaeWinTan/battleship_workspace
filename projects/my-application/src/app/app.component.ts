@@ -13,6 +13,7 @@ export class AppComponent {
   gridSize:number;
   shipsNo:number;
   iterations:number;
+  eff:number;
   public lineChartData: ChartDataSets[] = [
      { data: [], label: 'Smart bot Turns' },
      { data: [],label:'Dumb bot Turns'}
@@ -38,6 +39,7 @@ export class AppComponent {
    public lineChartPlugins = [];
   constructor(bps:BattleshipPerformanceService){
     this.bps = bps;
+    this.eff = null;
   }
   start(){
     this.lineChartData[0].data=[];
@@ -48,6 +50,7 @@ export class AppComponent {
           this.lineChartData[0].data.push(c.computerTurns);
           this.lineChartData[1].data.push(c.playerTurns);
           this.lineChartLabels.push(`${c.games}`);
+          this.eff = c.computerBetterBy;
         },
         (err:Battleship_performanceError)=>{
           alert(err.message);

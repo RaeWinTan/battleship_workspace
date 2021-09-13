@@ -20,7 +20,7 @@ export const initVal$ = (gridSize:number, shipsNo:number, iterations:number) => 
     return throwError(err)
   }),
   map(_=>{
-    var cc:ShipClassInterface = new ComputerClass({ships:[], allPos:[]}, gridSize, shipsNo);
+    var cc:ShipClassInterface = new ComputerClass({ships:[], allPos:new Map<number, number>()}, gridSize, shipsNo);
     return {
       "gridSize":gridSize,
       "shipsNo":shipsNo,

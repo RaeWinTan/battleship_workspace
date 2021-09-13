@@ -21,8 +21,10 @@ export interface ShotClassInterface {
 export class ShotClass implements ShotClassInterface {
   _shots:Shot[] = [];
   _oppShips:ShipClassInterface;
+  _shotOpti:Map<number, number>;
   constructor(oppShips:ShipClassInterface){
     this._oppShips = oppShips;
+    this._shotOpti = new Map<number, number>();
   }
   get shots(){
     return this._shots;
@@ -30,10 +32,7 @@ export class ShotClass implements ShotClassInterface {
 
 
   protected shotBefore(x:number):boolean{
-    for(let i of this._shots){
-      if(x === i.pos) return true;
-    }
-    return false;
+    return this._shotOpti.has(x);
   }
 
   shoot(x:number, s:BehaviorSubject<any>):boolean{
@@ -47,11 +46,13 @@ export class ShotClass implements ShotClassInterface {
           tmp[j.length] = tmp[j.length] - 1;
           s.next(tmp);//to update the score
           this._shots.push({hit:true, pos:i, shipLen:j.length});
+          this._shotOpti.set(i, i);
           return true;
         }
       }
     }
     this._shots.push({hit:false, pos:x});
+    this._shotOpti.set(x,x);
     return true;
   }
 }

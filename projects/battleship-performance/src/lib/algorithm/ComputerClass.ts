@@ -42,8 +42,8 @@ export class ComputerClass extends ShipClass {
     let u:boolean = false;
     let d:boolean = false;
     while (len>0) {
-      if(!u) u = this._shipman.allPos.includes(xUp);
-      if(!d) d = this._shipman.allPos.includes(xDown);
+      if(!u) u = super.shipBefore(xUp);
+      if(!d) d = super.shipBefore(xDown);
 
       if (xDown <= this._gridSize*this._gridSize && !d){
         len--;
@@ -67,8 +67,8 @@ export class ComputerClass extends ShipClass {
 
     len--;
     while (len>0) {
-      if(!l) l = this._shipman.allPos.includes(xLeft);
-      if(!r) r = this._shipman.allPos.includes(xRight);
+      if(!l) l = super.shipBefore(xLeft);
+      if(!r) r = super.shipBefore(xRight);
       if (super.inHorizontalLine(x, xLeft) && !l){
         len--;
         super.add(xLeft);
