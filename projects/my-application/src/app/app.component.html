@@ -41,6 +41,8 @@
     [colors]="lineChartColors"
     [legend]="lineChartLegend"
     [chartType]="lineChartType"
-    [plugins]="lineChartPlugins">
+    [plugins]="lineChartPlugins"
+    (chartClick)="testClick($event)"
+    >
   </canvas>
 </div>

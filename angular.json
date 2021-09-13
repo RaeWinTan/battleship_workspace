@@ -64,6 +64,7 @@
               "projects/my-application/src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "projects/my-application/src/styles.css"
             ],
             "scripts": []

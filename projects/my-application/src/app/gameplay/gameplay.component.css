@@ -1,0 +1,24 @@
+.grid-container {
+  display: grid;
+  position:relative;
+  background-color: #2196F3;
+  /*padding: 10px;*/
+  /*grid-template-columns: repeat(3,auto);*/
+}
+
+.grid-item {
+  position: relative;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  /*outline: 1px solid rgba(0, 0, 0, 0.8);*/
+  text-align: center;
+}
+
+.dummy {
+	margin-bottom: 100%;
+}
+
+.element {
+	position:absolute;
+}
