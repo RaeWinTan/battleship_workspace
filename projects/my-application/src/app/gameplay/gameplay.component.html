@@ -1,6 +1,6 @@
 
 <div class="modal-header">
-     <h4 class="modal-title">Hi there!</h4>
+     <h4 class="modal-title">GAME: {{game}}</h4>
      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
        <span aria-hidden="true">&times;</span>
      </button>
@@ -8,17 +8,56 @@
    <div class="modal-body">
      <div class="container  p-0 m-0">
 
-       <div class="row p-0 m-0 justify-content-center">
-         <div class="col-6 p-0 m-0 border border-primary">
+       <div class="row p-0 m-0 d-flex justify-content-center">
+         <div class="col-5 p-0 m-0">
             OPPONENET GRIDS
          </div>
        </div>
-       <div class="row p-0 m-0 justify-content-center">
-         <div #oppGrid class="col-6 p-0 m-0 border border-primary grid-container">
+       <div class="row p-0 m-0 d-flex justify-content-center">
+         <div #oppGrid class="col-5 p-0 m-0  grid-container">
          </div>
        </div>
-
+       <div class="row p-0 m-0 d-flex justify-content-around">
+         <div class="col-5 p-0 m-0">
+           <div class="row p-0 m-0">
+              SMARTBOT SHOTS
+           </div>
+           <div class="row p-0 m-0">
+             <div #smartShot class="col p-0 m-0 grid-container">
+            </div>
+           </div>
+         </div>
+         <div class="col-5 p-0 m-0">
+           <div class="row p-0 m-0">
+              DUMBBOT SHOTS
+           </div>
+           <div class="row p-0 m-0">
+             <div #dumbShot class="col p-0 m-0 grid-container">
+            </div>
+           </div>
+         </div>
+       </div>
      </div>
+<!--
+     <div class="container  p-0 m-0">
+       <div class="row p-0 m-0 d-flex justify-content-around">
+         <div class="col-5 p-0 m-0">
+           <div class="row p-0 m-0">
+              SMARTBOT SHOTS
+           </div>
+           <div #smartShot class="row p-0 m-0 grid-container">
+           </div>
+         </div>
+         <div class="col-5 p-0 m-0">
+           <div class="row p-0 m-0">
+              DUMBBOT SHOTS
+           </div>
+           <div #dumbShot class="row p-0 m-0 grid-container">
+           </div>
+         </div>
+       </div>
+     </div>
+     -->
    </div>
    <div class="modal-footer">
      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>

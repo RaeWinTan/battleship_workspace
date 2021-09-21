@@ -6,7 +6,7 @@ export const enum Direction{
   no="no"
 }
 
-interface Ship {
+export interface Ship {
   pos: number[];
   length:number;
   posibleDirection:Direction; //here should have the posible direction it can go

@@ -7,7 +7,9 @@ import {BattleshipPerformanceService} from "battleship-performance";
 import { ChartsModule } from 'ng2-charts';
 import { GameplayComponent } from './gameplay/gameplay.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +20,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     ChartsModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    CommonModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [  BattleshipPerformanceService],
   bootstrap: [AppComponent]

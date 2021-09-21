@@ -9,9 +9,6 @@ export interface Shot{
   shipLen?:number;
 }
 
-
-
-
 export interface ShotClassInterface {
   shots:Shot[];
   shoot(x:number, s:BehaviorSubject<any>):boolean;

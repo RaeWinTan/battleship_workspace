@@ -13,7 +13,10 @@ CODE: https://github.com/RaeWinTan/battleship_workspace/tree/master/projects/bat
 
 This is a Angular package to estimate the amount turns for the battleship 'smart bot' in  https://github.com/RaeWinTan/RXJSLearn (battleship branch) to finish a battleship game as compared to a less efficient 'dumb bot' that just shoots shots base on luck to win the game (using a random number generator).
 
+## Demo
+GAME: https://stackblitz.com/github/RaeWinTan/RXJSLearn/tree/battleship Read its readme.md to deploy(it only takes 3 steps)
 
+Package in action in an Angular Project: https://raewintan.github.io/battleship_workspace/
 
 # GAME RULES
 
@@ -33,11 +36,11 @@ This is a Angular package to estimate the amount turns for the battleship 'smart
   * The greater the difference between grid size and ships the more inaccurate the result because the smart bot's probability to hit a ship in a less crowded grid is closer to the dumb bot.
 * I ran the program in my computer with grid size, ships, games = 30. The smart bot uses about 16.5% less turns than dumb bot.
 
-## Demo
-GAME: https://stackblitz.com/github/RaeWinTan/RXJSLearn/tree/battleship Read its readme.md to deploy(it only takes 3 steps)
-
-Package in action in an Angular Project: https://raewintan.github.io/battleship_workspace/
-
+# Solver Algorithm(aka smart bot)
+* Randomly shoot shots on opponent grids
+* once it hit a ship, it determine which possible direction(vertical/horizontal) the ship could be by using the length of the ship, and using what the shots were already taken on the board.(basically use the length recently hit ship and what are the available space on the board)
+* if by accident while solving the current ship, the smart bot hit a near by ship, it put that ship on queue to be processed later
+* The bot know how to solved partially solved ships (ships may be partially solved while solving another ship). Situations such as: Gaps between a ship and padding beside(horizontally/vertically)
 
 ## Usage
 
@@ -101,9 +104,27 @@ export class .....{
 ## BattleshipResult interface
 | Attribute      | Type   | Description
 |----------------|--------|------------
-| computerTurns | number | number of turns the smart bot took so sink all ships in the board of the current game
-| playerTurns | number | number of turns the dumb bot took to sink all ships in the board of the current game
 | games | number | number of games to simulate
-| computerAvgTurns | number | running average number of turns smart bot needs to sink all ships in board
-| playerAvgTurns | number | running average number of turns the dumb bot needs to sink all ships in board
-| computerBetterBy | number | number of games to simulate
+| computerStatus | ShotInterface | Number of turn smart bot took and Shots taken
+| playerStatus | ShotInterface | Number of turn dumb bot took and Shots taken
+| oppBoard | Ship[] | How the ships were placed in the opponent board (reminder: the smart bot and dumb bot played against this Board aka opponent board, they play against the same board)
+
+## ShotInterface interface
+| Attribute      | Type   | Description
+|----------------|--------|------------
+| turns | number | total number of turns taken to shoot down all the ships
+| shots | Shot[] | Description of the shots taken
+
+## Ship interface
+| Attribute      | Type   | Description
+|----------------|--------|------------
+| pos | number[] | positions of the grid the ship took
+| length | number | length of that ship
+| posibleDirection | string | possible direction the ship could be at that time of placing the ship down on the board
+
+## Shot interface
+| Attribute      | Type   | Description
+|----------------|--------|------------
+| hit | boolean | Did it hit a ship at the specified position of the shot
+| pos | number | position of the shot
+| shipLen | number(may be undefined) | if hit is true then this is the length of the ship the shot hit, else it will be undefined

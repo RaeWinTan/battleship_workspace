@@ -4,7 +4,38 @@
     <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
   </svg>
   <div id="collapseExample" class=" bg-transparent container float-left" >
-    <div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item"  [ngClass]="{'active': showHelp}"><a class="page-link" (click)="showHelp=!showHelp">Toggle Help</a></li>
+      </ul>
+    </nav>
+    <div [ngClass]="{'show':showHelp, 'notShow':!showHelp}">
+      <ol class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto w-100">
+            <div class="font-weight-bold">Setting Parameters</div>
+              <ol class="list-group">
+                <li class="list-group-item">Grid Size: set the boards to a N x N size square</li>
+                <li class="list-group-item">No. of Ships: set the number of ships that will be on the boards</li>
+                <li class="list-group-item">No. of Iterations: number of games the bots will be playing</li>
+              </ol>
+          </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto w-100">
+            <div class="font-weight-bold">Chart data points</div>
+              <ol class="list-group">
+                <li class="list-group-item">Click on the data point to see how the game was played by the two bots.
+                  <div class="text-warning">The visualisation is not meant to support a large grid size(>25) though the game supports it. This visualisation is just to prove that the algorithm(smart bot) is working the way it suppose to.</div>
+                 </li>
+                <li class="list-group-item">Data points on the chart represent the number of turns that cooresponding bot took</li>
+              </ol>
+          </div>
+
+        </li>
+    </ol>
+    </div>
+    <div [ngClass]="{'show':!showHelp, 'notShow':showHelp}">
       <div class="form-group row">
         <label for="speedInput" class="col-sm-3 col-form-label">Grid Size</label>
         <div class="col-sm-9">
@@ -33,7 +64,7 @@
   </div>
 </div>
 <div>
-  Smart Bot efficientcy compared to Dumb bot on average {{eff}}%
+  Smart bot took {{eff}}% less turns to shoot down all opponent's ships compared to dumb bot.
   <canvas baseChart width="1000" height="800"
     [datasets]="lineChartData"
     [labels]="lineChartLabels"
